@@ -1,5 +1,14 @@
 def is_valid_literal(input_string):
 
+    #check for exponent
+    if 'e' in input_string.lower():
+        parts = input_string.lower().split('e')
+        if len(parts) != 2:
+            return "Invalid Literal"
+        base, exponent = parts
+        if (base.isdigit() or ('.' in base and all(c.isdigit() for c in base.replace('.', '', 1)))) and exponent.isdigit():
+            return "Floating Point Literal"
+            
     #decimal integer literal 
     if input_string[0] != '0' and all(c.isdigit() for c in input_string):
         return "Decimal Integer Literal"
